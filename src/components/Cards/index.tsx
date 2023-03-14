@@ -37,6 +37,7 @@ export default class Cards extends Component<Props, State> {
           <p>Loading...</p>
         </div>
       );
+
     return (
       <div className={styles.list}>
         {this.state.cards.map((item) => (

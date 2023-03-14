@@ -1,13 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import Cards from './Card/index';
 import React from 'react';
+import Card from './Card';
 
 // describe('Card', () => {
-//   beforeEach(() => {
-//     render(<Cards />);
-//   });
-
-//   test('check loading', () => {
+//   test('check loading', async () => {
+//     render(<Card />);
 //     expect(screen.getByText('Loading...')).toBeDefined();
 //   });
 // });
