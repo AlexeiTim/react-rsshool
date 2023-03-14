@@ -3,7 +3,6 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { App } from './App';
-import Main from 'pages/Main/Main';
 
 describe('App', () => {
   it('Renders not found if invalid path', () => {
@@ -12,6 +11,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
+    screen.debug();
     expect(
       screen.getByRole('heading', {
         level: 1,

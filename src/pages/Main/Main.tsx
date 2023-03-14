@@ -3,9 +3,6 @@ import SearchBar from '../../components/SearchBar';
 import Cards from '../../components/Cards';
 
 class Main extends React.Component {
-  state = {
-    searchValue: '',
-  };
   changeSearchValue(value: string) {
     console.log(value);
     this.setState({ ...this.state, searchValue: value });
@@ -13,10 +10,7 @@ class Main extends React.Component {
   render() {
     return (
       <div role="container" className="container">
-        <SearchBar
-          value={this.state.searchValue}
-          onChangeValue={(e) => this.changeSearchValue(e.currentTarget.value)}
-        />
+        <SearchBar />
         <Cards />
       </div>
     );

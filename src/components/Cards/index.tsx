@@ -30,13 +30,13 @@ export default class Cards extends Component<Props, State> {
   render() {
     if (!this.state.cards.length)
       return (
-        <div className={styles.loadCover}>
+        <div role="block" className={styles.loadCover}>
           <p>Loading...</p>
         </div>
       );
 
     return (
-      <div className={styles.list}>
+      <div role="cardBlock" className={styles.list}>
         {this.state.cards.map((item) => (
           <Card key={item.id} item={item} />
         ))}

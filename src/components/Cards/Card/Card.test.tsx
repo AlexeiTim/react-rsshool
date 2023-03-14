@@ -19,5 +19,6 @@ describe('Card tests', () => {
   });
   test('Card have description', () => {
     expect(screen.getByText('sometext')).toBeDefined();
+    expect(screen.getByText(/jew/)).toBeDefined();
   });
 });

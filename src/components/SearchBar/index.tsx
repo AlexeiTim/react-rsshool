@@ -6,24 +6,35 @@ type State = {
   inputValue: string;
 };
 
-type Props = {
-  value: string;
-  onChangeValue?: (e: React.FormEvent<HTMLInputElement>) => void;
-};
+type Props = object;
 
 export default class SearchBar extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      inputValue: localStorage.getItem('input') || '',
+    };
+  }
   componentWillUnmount(): void {
-    localStorage.setItem('input', this.props.value);
+    localStorage.setItem('input', this.state.inputValue);
+  }
+
+  componentDidMount(): void {
+    const checked = localStorage.getItem('input');
+    if (checked) {
+      this.setState({ ...this.state, inputValue: checked });
+    }
+  }
+  changeValue(e: React.FormEvent<HTMLInputElement>) {
+    this.setState({ ...this.state, inputValue: e.currentTarget.value });
   }
   render() {
-    const { onChangeValue } = this.props;
-    const value = this.props.value || localStorage.getItem('input') || '';
     return (
       <section className={styles.search}>
         <input
           placeholder="search"
-          onChange={onChangeValue}
-          value={value}
+          onChange={(e) => this.changeValue(e)}
+          value={this.state.inputValue}
           type="text"
           className={styles.input}
         />

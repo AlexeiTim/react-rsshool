@@ -19,7 +19,7 @@ export default class Header extends Component<Props, State> {
     active: 0,
     pages: [
       {
-        name: 'Home',
+        name: 'Main',
         path: '/',
       },
       {
@@ -40,15 +40,8 @@ export default class Header extends Component<Props, State> {
           <nav className={styles.navigator}>
             <ul className={styles.list}>
               {this.state.pages.map((page, index) => (
-                <li
-                  onClick={() => this.changeActive(index)}
-                  key={index}
-                  className={styles.item}
-                >
-                  <Link
-                    to={page.path}
-                    className={this.state.active === index ? styles.active : ''}
-                  >
+                <li onClick={() => this.changeActive(index)} key={index} className={styles.item}>
+                  <Link to={page.path} className={this.state.active === index ? styles.active : ''}>
                     {page.name}
                   </Link>
                 </li>
