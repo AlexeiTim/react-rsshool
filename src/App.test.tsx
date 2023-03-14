@@ -11,7 +11,6 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    screen.debug();
     expect(
       screen.getByRole('heading', {
         level: 1,

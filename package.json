@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "test": "vitest",
     "testUI": "vitest --ui",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "eslint .  --ext .js",
+    "lint-fix": "eslint --fix .  --ext .js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -19,6 +21,7 @@
     "sass": "^1.59.2"
   },
   "devDependencies": {
+    "@testing-library/dom": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -29,7 +32,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.29.2",
     "@vitest/ui": "^0.29.2",
-    "eslint": "^8.2.0",
+    "eslint": "^8.36.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.6.0",

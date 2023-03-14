@@ -8,4 +8,15 @@ describe('Main', () => {
     render(<Main />);
     expect(screen.getByRole('container')).toHaveClass('container');
   });
+
+  it('have loading', () => {
+    render(<Main />);
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+  });
+
+  it('have products', async () => {
+    render(<Main />);
+    const items = await screen.findAllByRole('heading', { level: 2 });
+    expect(items.length).toBe(8);
+  });
 });
