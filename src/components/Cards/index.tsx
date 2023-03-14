@@ -18,12 +18,9 @@ interface State {
 type Props = object;
 
 export default class Cards extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      cards: [],
-    };
-  }
+  state: State = {
+    cards: [],
+  };
   async componentDidMount() {
     const res = await fetch('https://fakestoreapi.com/products?limit=8');
     const data = await res.json();

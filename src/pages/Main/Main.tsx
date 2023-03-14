@@ -7,6 +7,7 @@ class Main extends React.Component {
     searchValue: '',
   };
   changeSearchValue(value: string) {
+    console.log(value);
     this.setState({ ...this.state, searchValue: value });
   }
   render() {

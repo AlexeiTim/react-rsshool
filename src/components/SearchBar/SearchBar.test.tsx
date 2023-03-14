@@ -10,7 +10,7 @@ describe('SearchBar component', () => {
 
   it('SearchBar have class', () => {
     render(<SearchBar value="123" />);
-    expect(screen.getByRole('textbox')).toHaveTextContent('123');
+    expect(screen.getByText('123')).toBeDefined();
   });
   // it('SearchBar value', () => {
   //   render(<SearchBar value="" />);
