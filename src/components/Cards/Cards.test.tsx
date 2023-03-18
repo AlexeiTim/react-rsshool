@@ -24,38 +24,20 @@ const cardProps = [
 
 describe('Cards component', () => {
   test('test', () => {
-    render(
-      <Cards>
-        {cardProps.map((item) => {
-          <Card key={item.id} card={item} />;
-        })}
-      </Cards>
-    );
+    render(<Cards />);
     expect(screen.getByText(/a/)).toBeDefined();
   });
   test('test2', () => {
-    render(
-      <Cards>
-        <Card key={cardProps[0].id} card={cardProps[0]} />;
-      </Cards>
-    );
+    render(<Cards />);
     expect(screen.getByRole('block')).toBeInTheDocument();
   });
   test('test3', () => {
-    render(
-      <Cards>
-        <Card key={cardProps[0].id} card={cardProps[0]} />;
-      </Cards>
-    );
+    render(<Cards />);
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
   });
 
   it('test4', async () => {
-    render(
-      <Cards>
-        <Card key={cardProps[0].id} card={cardProps[0]} />;
-      </Cards>
-    );
+    render(<Cards />);
     expect(
       await screen.findAllByRole('heading', {
         level: 2,

@@ -12,11 +12,11 @@ describe('Card tests', () => {
     image: 'http/12312312',
   };
   test('Card have title', () => {
-    render(<Card key={1} item={cardProps} />);
+    render(<Card key={1} card={cardProps} />);
     expect(screen.getByText('Title')).toBeDefined();
   });
   test('Card have description', () => {
-    render(<Card key={1} item={cardProps} />);
+    render(<Card key={1} card={cardProps} />);
     expect(screen.getByText('sometext')).toBeDefined();
     expect(screen.getByText(/jew/)).toBeDefined();
   });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import Card from './Card';
 import styles from './Cards.module.scss';
 
@@ -15,7 +15,9 @@ interface State {
   cards: CardsState[];
 }
 
-type Props = object;
+interface Props {
+  children?: ReactNode;
+}
 
 export default class Cards extends Component<Props, State> {
   state: State = {
@@ -27,10 +29,23 @@ export default class Cards extends Component<Props, State> {
       const data = await res.json();
       this.setState({ ...this.state, cards: data });
     } catch (e) {
-      throw new Error('Bad request');
+      this.setState({
+        ...this.state,
+        cards: [
+          {
+            id: 1,
+            title: 'test',
+            price: 100,
+            category: 'catogorry',
+            description:
+              'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, est.',
+            image:
+              'https://myocco.ee/media/catalog/product/cache/bf8b30fd3f1ac1296c578b7a4d3911b0/7/0/f/5/70f5ed61f4b97ccf99484ef25b6878f4b1026dfb_Test_Logo_Circle_black_transparent_copy.jpg?auto=webp&format=pjpg&width=3840&height=3840',
+          },
+        ],
+      });
     }
   }
-
   render() {
     if (!this.state.cards.length)
       return (
@@ -38,7 +53,9 @@ export default class Cards extends Component<Props, State> {
           <p>Loading...</p>
         </div>
       );
-
+    if (this.state.cards.length === 1) {
+      return <h2>ServerError</h2>;
+    }
     return (
       <div role="cardBlock" className={styles.list}>
         {this.state.cards.map((item) => (
