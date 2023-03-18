@@ -18,9 +18,7 @@ export default class Card extends Component<CardProps> {
   render() {
     const { title, category, price, image } = this.props.card;
     const { description } = this.props.card;
-    // if (description.length > 30) {
-    //   description = description.substring(0, 30) + '...';
-    // }
+
     return (
       <div className={styles.item}>
         <div

@@ -19,6 +19,17 @@ interface Props {
   children?: ReactNode;
 }
 
+const fakeApi = [
+  {
+    id: 1,
+    title: 'test',
+    price: 100,
+    category: 'catogorry',
+    description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, est.',
+    image:
+      'https://myocco.ee/media/catalog/product/cache/bf8b30fd3f1ac1296c578b7a4d3911b0/7/0/f/5/70f5ed61f4b97ccf99484ef25b6878f4b1026dfb_Test_Logo_Circle_black_transparent_copy.jpg?auto=webp&format=pjpg&width=3840&height=3840',
+  },
+];
 export default class Cards extends Component<Props, State> {
   state: State = {
     cards: [],
@@ -53,9 +64,9 @@ export default class Cards extends Component<Props, State> {
           <p>Loading...</p>
         </div>
       );
-    if (this.state.cards.length === 1) {
-      return <h2>ServerError</h2>;
-    }
+    // if (this.state.cards.length === 1) {
+    //   return <h2>ServerError</h2>;
+    // }
     return (
       <div role="cardBlock" className={styles.list}>
         {this.state.cards.map((item) => (

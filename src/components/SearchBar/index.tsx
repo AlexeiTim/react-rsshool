@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import styles from './SearchBar.module.scss';
 
@@ -6,15 +6,15 @@ type State = {
   inputValue: string;
 };
 
-type Props = object;
+type Props = {
+  children?: ReactNode;
+};
 
 export default class SearchBar extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      inputValue: localStorage.getItem('input') || '',
-    };
-  }
+  state = {
+    inputValue: localStorage.getItem('input') || '',
+  };
+
   componentWillUnmount(): void {
     localStorage.setItem('input', this.state.inputValue);
   }
