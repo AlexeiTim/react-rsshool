@@ -15,14 +15,6 @@
     "baseUrl": "./src",
     "resolveJsonModule": true
   },
-  "include": [
-    "vite.config.ts",
-    ".eslint.json",
-    "src",
-    "src/**/*.d.tsx",
-    "src/**/*.tsx",
-    "src/**/*.js",
-    "src/**/*.svelte"
-, "setupTests.ts"  ],
+  "include": ["vite.config.ts", ".eslint.json", "src", "setupTests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

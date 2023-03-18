@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "testUI": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "lint": "eslint .  --ext .js",
-    "lint-fix": "eslint --fix .  --ext .js"
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+    "lintfix": "npm run lint -- --fix",
+    "pre": "prettier --write \"src/**/*.{tsx,scss,css,json}\""
   },
   "dependencies": {
     "react": "^18.2.0",

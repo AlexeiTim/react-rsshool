@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, render, findAllByRole } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import Cards from '.';
 import Card from './Card';
 
@@ -27,7 +27,7 @@ describe('Cards component', () => {
     render(
       <Cards>
         {cardProps.map((item) => {
-          <Card key={item.id} item={item} />;
+          <Card key={item.id} card={item} />;
         })}
       </Cards>
     );
@@ -36,7 +36,7 @@ describe('Cards component', () => {
   test('test2', () => {
     render(
       <Cards>
-        <Card key={cardProps[0].id} item={cardProps[0]} />;
+        <Card key={cardProps[0].id} card={cardProps[0]} />;
       </Cards>
     );
     expect(screen.getByRole('block')).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('Cards component', () => {
   test('test3', () => {
     render(
       <Cards>
-        <Card key={cardProps[0].id} item={cardProps[0]} />;
+        <Card key={cardProps[0].id} card={cardProps[0]} />;
       </Cards>
     );
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('Cards component', () => {
   it('test4', async () => {
     render(
       <Cards>
-        <Card key={cardProps[0].id} item={cardProps[0]} />;
+        <Card key={cardProps[0].id} card={cardProps[0]} />;
       </Cards>
     );
     expect(

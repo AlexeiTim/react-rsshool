@@ -1,13 +1,11 @@
 .container {
-
   background-color: #123;
 }
-
 
 .header {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 5px;
 
   .list {
     display: flex;
@@ -15,7 +13,7 @@
   }
 
   .item {
-    >a {
+    > a {
       transition: all 0.3s;
 
       &:hover {
@@ -30,6 +28,5 @@
         border-bottom: 1px solid green;
       }
     }
-
   }
 }
