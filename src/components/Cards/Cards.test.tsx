@@ -1,26 +1,6 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 import Cards from '.';
-import Card from './Card';
-
-const cardProps = [
-  {
-    id: 1,
-    title: 'Title',
-    price: 20,
-    category: 'jew',
-    description: 'sometext',
-    image: 'http/12312312',
-  },
-  {
-    id: 2,
-    title: 'Title2',
-    price: 20,
-    category: 'jeww',
-    description: 'sometext123',
-    image: 'http/12312312',
-  },
-];
 
 describe('Cards component', () => {
   test('test', () => {
