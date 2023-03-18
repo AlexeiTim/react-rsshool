@@ -20,9 +20,9 @@ export default class SearchBar extends Component<Props, State> {
   }
 
   componentDidMount(): void {
-    const checked = localStorage.getItem('input');
-    if (checked) {
-      this.setState({ ...this.state, inputValue: checked });
+    const inputText = localStorage.getItem('input');
+    if (inputText) {
+      this.setState({ ...this.state, inputValue: inputText });
     }
   }
   changeValue(e: React.FormEvent<HTMLInputElement>) {
