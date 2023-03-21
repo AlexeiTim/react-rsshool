@@ -26,6 +26,10 @@ export default class Header extends Component<Props, State> {
         name: 'About Us',
         path: '/about',
       },
+      {
+        name: '404',
+        path: '/123123123',
+      },
     ],
   };
 
@@ -33,10 +37,16 @@ export default class Header extends Component<Props, State> {
     this.setState({ ...this.state, active: index });
   };
 
+  getUrl = () => {
+    const url = window.location.href;
+    return url;
+  };
+
   render() {
     return (
       <div className={styles.container}>
         <header className={styles.header}>
+          <h1>{this.getUrl()}</h1>
           <nav className={styles.navigator}>
             <ul className={styles.list}>
               {this.state.pages.map((page, index) => (
