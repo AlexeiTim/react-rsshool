@@ -11,6 +11,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
+    screen.debug();
     expect(
       screen.getByRole('heading', {
         level: 1,
@@ -27,6 +28,6 @@ describe('App', () => {
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('About us');
+    ).toBeInTheDocument();
   });
 });

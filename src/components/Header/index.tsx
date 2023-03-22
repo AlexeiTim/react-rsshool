@@ -59,7 +59,7 @@ export default class Header extends Component<Props, State> {
     return (
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.url}>{currentUrl}</h1>
+          <h2 className={styles.url}>{currentUrl}</h2>
           <nav className={styles.navigator}>
             <ul className={styles.list}>
               {this.state.pages.map((page, index) => (
