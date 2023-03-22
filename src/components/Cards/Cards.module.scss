@@ -1,0 +1,12 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.loadCover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
