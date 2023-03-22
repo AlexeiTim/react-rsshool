@@ -37,10 +37,29 @@ export default class Header extends Component<Props, State> {
     this.setState({ ...this.state, active: index });
   };
 
+  getUrl = () => {
+    let result = '';
+    const url = window.location.href;
+    const urlParse = url.split('/');
+    switch (urlParse.at(-1)) {
+      case '':
+        result = 'Main';
+        break;
+      case 'about':
+        result = 'About Us';
+        break;
+      default:
+        result = 'Not Found';
+    }
+    return result;
+  };
+
   render() {
+    const currentUrl = this.getUrl();
     return (
       <div className={styles.container}>
         <header className={styles.header}>
+          <h1 className={styles.url}>{currentUrl}</h1>
           <nav className={styles.navigator}>
             <ul className={styles.list}>
               {this.state.pages.map((page, index) => (
