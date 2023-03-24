@@ -27,8 +27,8 @@ export default class Header extends Component<Props, State> {
         path: '/about',
       },
       {
-        name: '404',
-        path: '/123123123',
+        name: 'Form',
+        path: '/form',
       },
     ],
   };
@@ -47,6 +47,9 @@ export default class Header extends Component<Props, State> {
         break;
       case 'about':
         result = 'About Us';
+        break;
+      case 'form':
+        result = 'Form';
         break;
       default:
         result = 'Not Found';
