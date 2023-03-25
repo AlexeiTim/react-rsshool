@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormErrorMessage } from '../../../types/enums';
 import styles from './Input.module.scss';
 
 interface InputProps {

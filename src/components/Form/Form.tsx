@@ -1,5 +1,5 @@
 import { countries } from '../../constants/countries';
-import React, { MutableRefObject, RefObject } from 'react';
+import React, { MutableRefObject } from 'react';
 import Checkbox from './Checkbox/Checkbox';
 import styles from './Form.module.scss';
 import Input from './Input/Input';

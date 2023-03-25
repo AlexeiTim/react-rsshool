@@ -1,5 +1,4 @@
 import React from 'react';
-import { InputTypes } from '../../../types/enums';
 import styles from './Switcher.module.scss';
 
 type SwitcherProps = {
