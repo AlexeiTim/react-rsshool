@@ -15,7 +15,6 @@ describe('UserLists tests', () => {
   ];
   test('UserList first test', () => {
     render(<UserList users={fakeDataForUser} />);
-    screen.debug();
     expect(screen.getAllByText(/Country/gi)).toHaveLength(1);
   });
 });

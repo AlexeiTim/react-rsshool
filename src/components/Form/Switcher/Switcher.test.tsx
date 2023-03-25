@@ -12,7 +12,6 @@ describe('Switcher tests', () => {
         </label>
       </Switcher>
     );
-    screen.debug();
     expect(screen.getByPlaceholderText(/choose male/gi)).toBeInTheDocument();
   });
 });

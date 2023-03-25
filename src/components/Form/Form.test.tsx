@@ -6,7 +6,6 @@ describe('Form tests', () => {
   const testFunction = () => {};
   test('Form render', () => {
     render(<Form addUser={testFunction} />);
-    screen.debug();
     expect(screen.getByText(/Profile picture/gi)).toBeInTheDocument();
   });
 });

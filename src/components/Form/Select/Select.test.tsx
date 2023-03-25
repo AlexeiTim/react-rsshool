@@ -6,7 +6,6 @@ import Select from './Select';
 describe('Select tests', () => {
   test('Select have error', () => {
     render(<Select name="Country" variables={countries} error="Error" />);
-    screen.debug();
     expect(screen.getByText(/Error/gi)).toBeInTheDocument();
   });
 });
