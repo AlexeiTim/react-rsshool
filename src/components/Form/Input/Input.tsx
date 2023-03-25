@@ -11,7 +11,6 @@ interface InputProps {
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ name, type, error, accept }, ref) => {
     const inputStyles = !error ? styles.validate : styles.errorValidate;
-    console.log(error);
     return (
       <div className={styles.root}>
         <label>

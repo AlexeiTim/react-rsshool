@@ -7,7 +7,6 @@ type SwitcherProps = {
 };
 
 const Switcher: React.FC<SwitcherProps> = ({ children, error }) => {
-  console.log(error);
   return (
     <div className={styles.root}>
       {children}

@@ -83,10 +83,10 @@ class Form extends React.Component<FormProps, FormState> {
     const file = this.file.current?.files;
     const newDate = new Date(birthday);
 
-    if (!name || name.trim().length < 1 || !/^[a-zA-Z]+$/.test(name)) {
+    if (!name || (name.trim().length < 1 && !/^[a-zA-Z]+$/.test(name))) {
       failedField.push(ValidateValues.NAME);
     }
-    if (!lastName || lastName.trim().length < 1 || !/^[a-zA-Z]+$/.test(lastName)) {
+    if (!lastName || (lastName.trim().length < 1 && !/^[a-zA-Z]+$/.test(lastName))) {
       failedField.push(ValidateValues.LAST_NAME);
     }
     if (!birthday || currentDate.getTime() < newDate.getTime()) {
@@ -118,6 +118,7 @@ class Form extends React.Component<FormProps, FormState> {
     this.country.current!.value = SelectValues.DEFAULT;
     this.rules.current!.checked = false;
     this.male.current!.checked = false;
+    this.female.current!.checked = false;
     this.file.current!.value = '';
   };
 
