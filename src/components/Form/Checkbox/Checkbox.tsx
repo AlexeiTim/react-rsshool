@@ -1,19 +1,22 @@
 import React from 'react';
 import { InputTypes } from '../../../types/enums';
+import styles from './Checkbox.module.scss';
 
 type CheckboxProps = {
   name: string;
+  error: string;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ name }) => {
+const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({ name, error }, ref) => {
   return (
-    <div>
+    <div className={styles.root}>
       <label>
         {name}
-        <input type={InputTypes.CHECKBOX} name={name} />
+        <input ref={ref} type={InputTypes.CHECKBOX} name={name} />
+        <p style={{ color: 'red' }}>{error}</p>
       </label>
     </div>
   );
-};
+});
 
 export default Checkbox;

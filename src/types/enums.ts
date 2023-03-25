@@ -1,16 +1,19 @@
 export enum SelectValues {
-  DEFAULT = '',
+  DEFAULT = 'Choose country',
   RUSSIAN = 'Russian',
   BELARUSIAN = 'Belarusian',
   UKRAINE = 'Ukraine',
+  OTHER = 'Other',
 }
 
 export enum FormErrorMessage {
   NAME_ERROR = 'Not valid name',
   LAST_NAME_ERROR = 'Not valid last name',
-  RULES_ERROR = 'Don"t accept with rules',
-  GENDER_ERROR = 'Did"t pic the gender',
-  FILE_ERROR = 'Did"t load the file',
+  RULES_ERROR = 'Disagree with the rules',
+  GENDER_ERROR = 'Choose gender',
+  FILE_ERROR = 'Upload a photo please',
+  BIRTHDAY_ERROR = "You haven't been born yet?",
+  COUNTRY_ERROR = 'Choose country please',
 }
 
 export enum FormInputValues {
@@ -25,4 +28,14 @@ export enum InputTypes {
   FILE = 'file',
   CHECKBOX = 'checkbox',
   RADIO = 'radio',
+}
+
+export enum ValidateValues {
+  NAME = 'name',
+  LAST_NAME = 'lastName',
+  BIRTHDAY = 'birthday',
+  COUNTRY = 'country',
+  GENDER = 'gender',
+  IMAGE = 'image',
+  RULES = 'rules',
 }

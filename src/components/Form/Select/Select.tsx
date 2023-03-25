@@ -1,5 +1,7 @@
 import React from 'react';
+import styles from './Select.module.scss';
 import { SelectValues } from '../../../types/enums';
+
 type SelectProps = {
   name: string;
   error: string;
@@ -8,23 +10,27 @@ type SelectProps = {
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ name, error, variables }, ref) => {
-    const errorMessage = error ? 'No valid field' : '';
     const countryList = variables.map((country) => (
       <option key={country} value={country}>
         {country}
       </option>
     ));
     return (
-      <div>
+      <div className={styles.root}>
         <label>
           {name}
-          <select ref={ref} name={name}>
-            <option disabled value={SelectValues.DEFAULT}>
+          <select
+            defaultValue={SelectValues.DEFAULT}
+            className={styles.selectField}
+            ref={ref}
+            name={name}
+          >
+            <option disabled defaultValue={SelectValues.DEFAULT}>
               {SelectValues.DEFAULT}
             </option>
             {countryList}
           </select>
-          {errorMessage && <p>{errorMessage}</p>}
+          {error && <p className={styles.error}>{error}</p>}
         </label>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Submit.module.scss';
 
 type SubmitProps = {
   type: string;
@@ -7,9 +8,9 @@ type SubmitProps = {
 
 const Submit: React.FC<SubmitProps> = ({ type, value }) => {
   return (
-    <div>
+    <div className={styles.root}>
       <label>
-        <input type={type} value={value} />
+        <input className={styles.submitButton} type={type} value={value} />
       </label>
     </div>
   );
