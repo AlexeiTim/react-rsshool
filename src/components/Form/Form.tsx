@@ -7,7 +7,7 @@ import Select from './Select/Select';
 import Submit from './Submit/Submit';
 import Switcher from './Switcher/Switcher';
 import { FormErrorMessage, InputTypes, SelectValues, ValidateValues } from '../../types/enums';
-import { UserType } from '../../types/types';
+import { InputType, UserType } from '../../types/types';
 import { getCapitalizedString } from '../../Utils/capitaliz';
 
 type FormProps = {
@@ -17,8 +17,6 @@ type FormProps = {
 type FormState = {
   //
 };
-
-type InputType = MutableRefObject<HTMLInputElement | null>;
 
 class Form extends React.Component<FormProps, FormState> {
   userName: InputType;

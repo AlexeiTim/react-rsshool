@@ -7,7 +7,11 @@ type FormPageState = {
   users: Array<UserType | undefined>;
 };
 
-class FormPage extends React.Component<undefined, FormPageState> {
+type FormPageProps = {
+  children?: React.ReactNode;
+};
+
+class FormPage extends React.Component<FormPageProps, FormPageState> {
   state = {
     users: [],
   };

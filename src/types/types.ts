@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 export type UserType = {
   country: string;
   name: string;
@@ -6,3 +7,5 @@ export type UserType = {
   gender: string;
   file: string | undefined;
 };
+
+export type InputType = MutableRefObject<HTMLInputElement | null>;
