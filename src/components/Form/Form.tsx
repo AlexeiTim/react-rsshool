@@ -9,13 +9,14 @@ import Switcher from './Switcher/Switcher';
 import { FormErrorMessage, InputTypes, SelectValues, ValidateValues } from '../../types/enums';
 import { InputType, UserType } from '../../types/types';
 import { getCapitalizedString } from '../../Utils/capitaliz';
+import SuccessModal from './SuccessModal/SuccessModal';
 
 type FormProps = {
   addUser: (obj: UserType) => void;
 };
 
 type FormState = {
-  //
+  isValid: boolean;
 };
 
 class Form extends React.Component<FormProps, FormState> {
@@ -30,6 +31,9 @@ class Form extends React.Component<FormProps, FormState> {
   errorArray: MutableRefObject<HTMLFormElement | null>;
   constructor(props: FormProps) {
     super(props);
+    this.state = {
+      isValid: false,
+    };
     this.userName = React.createRef<HTMLInputElement>();
     this.userLastName = React.createRef();
     this.birthday = React.createRef();
@@ -66,6 +70,14 @@ class Form extends React.Component<FormProps, FormState> {
       file: imgURL,
     };
     this.props.addUser(user);
+    this.setState({
+      isValid: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        isValid: false,
+      });
+    }, 4000);
     this.clearDate();
   };
 
@@ -195,6 +207,7 @@ class Form extends React.Component<FormProps, FormState> {
           />
           <Submit type="submit" value="Submit" />
         </form>
+        <SuccessModal isValid={this.state.isValid} />
       </div>
     );
   }
