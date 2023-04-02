@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .link {
+    transition: all 0.3s;
+    color: green;
+
+    &:hover {
+      color: rgb(7, 193, 7);
+    }
+  }
+}
