@@ -4,7 +4,7 @@ import styles from './Checkbox.module.scss';
 
 type CheckboxProps = {
   name: string;
-  error: string;
+  error?: string;
 };
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({ name, error }, ref) => {

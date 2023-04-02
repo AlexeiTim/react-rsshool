@@ -1,45 +1,31 @@
-import React, { Component, ReactNode } from 'react';
+import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import styles from './SearchBar.module.scss';
 
-type State = {
-  inputValue: string;
-};
+const SearchBar = () => {
+  const [inputValue, setInputValue] = React.useState('');
 
-type Props = {
-  children?: ReactNode;
-};
+  React.useEffect(() => {
+    const currentValue = localStorage.getItem('input') || '';
+    setInputValue(currentValue);
+  }, []);
 
-export default class SearchBar extends Component<Props, State> {
-  state = {
-    inputValue: localStorage.getItem('input') || '',
+  const changeValue = (e: React.FormEvent<HTMLInputElement>) => {
+    localStorage.setItem('input', inputValue);
+    setInputValue(e.currentTarget.value);
   };
+  return (
+    <section className={styles.search}>
+      <input
+        placeholder="search"
+        onChange={changeValue}
+        value={inputValue}
+        type="text"
+        className={styles.input}
+      />
+      <AiOutlineSearch className={styles.icon} />
+    </section>
+  );
+};
 
-  componentWillUnmount(): void {
-    localStorage.setItem('input', this.state.inputValue);
-  }
-
-  componentDidMount(): void {
-    const inputText = localStorage.getItem('input');
-    if (inputText) {
-      this.setState({ ...this.state, inputValue: inputText });
-    }
-  }
-  changeValue(e: React.FormEvent<HTMLInputElement>) {
-    this.setState({ ...this.state, inputValue: e.currentTarget.value });
-  }
-  render() {
-    return (
-      <section className={styles.search}>
-        <input
-          placeholder="search"
-          onChange={(e) => this.changeValue(e)}
-          value={this.state.inputValue}
-          type="text"
-          className={styles.input}
-        />
-        <AiOutlineSearch className={styles.icon} />
-      </section>
-    );
-  }
-}
+export default SearchBar;

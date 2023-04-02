@@ -4,7 +4,7 @@ import { SelectValues } from '../../../types/enums';
 
 type SelectProps = {
   name: string;
-  error: string;
+  error?: string;
   variables: string[];
 };
 

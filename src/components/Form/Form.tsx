@@ -1,216 +1,110 @@
-import { countries } from '../../constants/countries';
-import React, { MutableRefObject } from 'react';
-import Checkbox from './Checkbox/Checkbox';
+import React from 'react';
 import styles from './Form.module.scss';
-import Input from './Input/Input';
-import Select from './Select/Select';
 import Submit from './Submit/Submit';
-import Switcher from './Switcher/Switcher';
-import { FormErrorMessage, InputTypes, SelectValues, ValidateValues } from '../../types/enums';
-import { InputType, UserType } from '../../types/types';
-import { getCapitalizedString } from '../../Utils/capitaliz';
+import { InputTypes } from '../../types/enums';
+import { UserType } from '../../types/types';
 import SuccessModal from './SuccessModal/SuccessModal';
+import { useForm } from 'react-hook-form';
 
 type FormProps = {
   addUser: (obj: UserType) => void;
 };
 
-type FormState = {
-  isValid: boolean;
-};
-
-class Form extends React.Component<FormProps, FormState> {
-  userName: InputType;
-  userLastName: InputType;
-  birthday: InputType;
-  file: MutableRefObject<HTMLInputElement | null>;
-  country: MutableRefObject<HTMLSelectElement | null>;
-  rules: InputType;
-  male: InputType;
-  female: InputType;
-  errorArray: MutableRefObject<HTMLFormElement | null>;
-  constructor(props: FormProps) {
-    super(props);
-    this.state = {
-      isValid: false,
-    };
-    this.userName = React.createRef<HTMLInputElement>();
-    this.userLastName = React.createRef();
-    this.birthday = React.createRef();
-    this.country = React.createRef();
-    this.file = React.createRef();
-    this.rules = React.createRef();
-    this.male = React.createRef();
-    this.female = React.createRef();
-    this.errorArray = React.createRef();
-  }
-
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const result = this.validator();
-    if (!result) {
-      this.forceUpdate();
-      return;
-    }
-    const gender = this.male.current?.checked ? 'male' : 'female';
-    const currentName = getCapitalizedString(this.userName.current!.value);
-    const currentLastName = getCapitalizedString(this.userLastName.current!.value);
-    let imgURL: string | null = '';
-    const fileTarget = this.file.current as HTMLInputElement;
-    const currentFile = fileTarget.files?.[0];
-    if (currentFile) {
-      imgURL = URL.createObjectURL(currentFile);
-    }
-    const user: UserType = {
-      country: this.country.current!.value,
-      birthday: this.birthday.current!.value,
-      gender: gender,
-      lastName: currentLastName,
-      name: currentName,
-      file: imgURL,
-    };
-    this.props.addUser(user);
-    this.setState({
-      isValid: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        isValid: false,
-      });
-    }, 4000);
-    this.clearDate();
-  };
-
-  validator = () => {
-    this.errorArray.current!.error = [];
-    const currentDate = new Date();
-    const failedField: string[] = [];
-    const name = this.userName.current!.value;
-    const lastName = this.userLastName.current!.value;
-    const birthday = this.birthday.current!.value;
-    const country = this.country.current!.value;
-    const rules = this.rules.current?.checked;
-    const male = this.male.current?.checked;
-    const female = this.female.current?.checked;
-    const file = this.file.current?.files;
-    const newDate = new Date(birthday);
-
-    if (!name || (name.trim().length < 1 && !/^[a-zA-Z]+$/.test(name))) {
-      failedField.push(ValidateValues.NAME);
-    }
-    if (!lastName || (lastName.trim().length < 1 && !/^[a-zA-Z]+$/.test(lastName))) {
-      failedField.push(ValidateValues.LAST_NAME);
-    }
-    if (!birthday || currentDate.getTime() < newDate.getTime()) {
-      failedField.push(ValidateValues.BIRTHDAY);
-    }
-    if (country === SelectValues.DEFAULT) {
-      failedField.push(ValidateValues.COUNTRY);
-    }
-
-    if (!male && !female) {
-      failedField.push(ValidateValues.GENDER);
-    }
-
-    if (!file || file.length < 1) {
-      failedField.push(ValidateValues.IMAGE);
-    }
-
-    if (!rules) {
-      failedField.push(ValidateValues.RULES);
-    }
-    this.errorArray.current!.error = [...failedField];
-    return failedField.length === 0;
-  };
-
-  clearDate = () => {
-    this.userName.current!.value = '';
-    this.userLastName.current!.value = '';
-    this.birthday.current!.value = '';
-    this.country.current!.value = SelectValues.DEFAULT;
-    this.rules.current!.checked = false;
-    this.male.current!.checked = false;
-    this.female.current!.checked = false;
-    this.file.current!.value = '';
-  };
-
-  render() {
-    return (
-      <div className={styles.cover}>
-        <form ref={this.errorArray} onSubmit={this.handleSubmit}>
-          <Input
-            ref={this.userName}
-            name="Name"
-            type={InputTypes.TEXT}
-            error={
-              this.errorArray.current?.error.includes(ValidateValues.NAME) &&
-              FormErrorMessage.NAME_ERROR
-            }
-          />
-          <Input
-            ref={this.userLastName}
-            name="SureName"
-            type={InputTypes.TEXT}
-            error={
-              this.errorArray.current?.error.includes(ValidateValues.LAST_NAME) &&
-              FormErrorMessage.LAST_NAME_ERROR
-            }
-          />
-          <Input
-            ref={this.birthday}
-            name="Birthday"
-            type={InputTypes.DATE}
-            error={
-              this.errorArray.current?.error.includes(ValidateValues.BIRTHDAY) &&
-              FormErrorMessage.BIRTHDAY_ERROR
-            }
-          />
-          <Select
-            ref={this.country}
-            name="Country"
-            variables={countries}
-            error={
-              this.errorArray.current?.error.includes(ValidateValues.COUNTRY) &&
-              FormErrorMessage.COUNTRY_ERROR
-            }
-          />
-          <Switcher
-            error={
-              this.errorArray.current?.error.includes(ValidateValues.GENDER) &&
-              FormErrorMessage.GENDER_ERROR
-            }
-          >
-            <label htmlFor="gender">
-              Male
-              <input ref={this.male} type={InputTypes.RADIO} name="gender" />
-              Female
-              <input ref={this.female} type={InputTypes.RADIO} name="gender" />
-            </label>
-          </Switcher>
-          <Input
-            accept="image/*"
-            ref={this.file}
-            name="Profile picture"
-            type={InputTypes.FILE}
-            error={
-              this.errorArray.current?.error.includes(ValidateValues.IMAGE) &&
-              FormErrorMessage.FILE_ERROR
-            }
-          />
-          <Checkbox
-            ref={this.rules}
-            name="Accept with rules"
-            error={
-              this.errorArray.current?.error.includes(ValidateValues.RULES) &&
-              FormErrorMessage.RULES_ERROR
-            }
-          />
-          <Submit type="submit" value="Submit" />
-        </form>
-        <SuccessModal isValid={this.state.isValid} />
-      </div>
-    );
-  }
+export interface FormValue {
+  name: string;
+  lastName: string;
+  birthday: string;
+  country: string;
+  gender: string;
+  rules: boolean;
+  file: HTMLInputElement;
 }
+
+const Form: React.FC<FormProps> = ({ addUser }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormValue>();
+
+  const [isValid, setIsValid] = React.useState(false);
+
+  const onSubmit = handleSubmit((data) => {
+    addUser({
+      ...data,
+      file: URL.createObjectURL(data.file[0]),
+    });
+    setIsValid(true);
+    setTimeout(() => setIsValid(false), 2000);
+    reset();
+  });
+
+  return (
+    <div className={styles.cover}>
+      <form onSubmit={onSubmit}>
+        <label>
+          <p>Name</p>
+          <input
+            placeholder="type your name"
+            type="text"
+            {...register('name', { required: true, minLength: 2 })}
+          />
+          {errors.name && <p className={styles.error}>Not valid field</p>}
+        </label>
+        <label>
+          <p>Last Name</p>
+          <input type="text" {...register('lastName', { required: true, minLength: 2 })} />
+          {errors.lastName && <p className={styles.error}>Not valid field</p>}
+        </label>
+        <label>
+          <p>Birthday</p>
+          <input type="date" {...register('birthday', { required: true })} />
+          {errors.birthday && <p className={styles.error}>Choose date</p>}
+        </label>
+        <label>
+          Country
+          <select {...register('country', { required: true })} name="country">
+            <option value="Belarus">Belarus</option>
+            <option value="Russia">Russia</option>
+            <option value="Other">Other</option>
+          </select>
+          {errors.country && <p className={styles.error}>Choose your country</p>}
+        </label>
+        <div>
+          <label>
+            Male
+            <input
+              value="male"
+              type={InputTypes.RADIO}
+              {...register('gender', { required: true })}
+            />
+          </label>
+          <label>
+            Female
+            <input
+              value="female"
+              type={InputTypes.RADIO}
+              {...register('gender', { required: true })}
+            />
+          </label>
+          {errors.gender && <p className={styles.error}>Choose your gender</p>}
+        </div>
+        <label>
+          File
+          <input accept="image/*" type="file" {...register('file', { required: true })} />
+          {errors.file && <p className={styles.error}>Put file</p>}
+        </label>
+        <label>
+          Accept with rules
+          <input type="checkbox" {...register('rules', { required: true })} />
+          {errors.rules && <p className={styles.error}>Accent with rules plz</p>}
+        </label>
+        <Submit type="submit" value="Submit" />
+      </form>
+      <SuccessModal isValid={isValid} />
+    </div>
+  );
+};
 
 export default Form;

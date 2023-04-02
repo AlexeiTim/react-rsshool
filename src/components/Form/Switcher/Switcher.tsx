@@ -3,7 +3,7 @@ import styles from './Switcher.module.scss';
 
 type SwitcherProps = {
   children: React.ReactNode;
-  error: string;
+  error?: string;
 };
 
 const Switcher: React.FC<SwitcherProps> = ({ children, error }) => {

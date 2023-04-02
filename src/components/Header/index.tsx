@@ -1,43 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
-
-type Props = object;
 
 type Page = {
   name: string;
   path: string;
 };
 
-interface State {
-  active: number;
-  pages: Page[];
-}
+const Header = () => {
+  const [active, setActive] = React.useState(0);
+  const pages: Page[] = [
+    {
+      name: 'Main',
+      path: '/',
+    },
+    {
+      name: 'About Us',
+      path: '/about',
+    },
+    {
+      name: 'Form',
+      path: '/form',
+    },
+  ];
 
-export default class Header extends Component<Props, State> {
-  state = {
-    active: 0,
-    pages: [
-      {
-        name: 'Main',
-        path: '/',
-      },
-      {
-        name: 'About Us',
-        path: '/about',
-      },
-      {
-        name: 'Form',
-        path: '/form',
-      },
-    ],
+  const changeActive = (index: number) => {
+    setActive(index);
   };
 
-  changeActive = (index: number) => {
-    this.setState({ ...this.state, active: index });
-  };
-
-  getUrl = () => {
+  const getUrl = () => {
     let result = '';
     const url = window.location.href;
     const urlParse = url.split('/');
@@ -57,25 +48,25 @@ export default class Header extends Component<Props, State> {
     return result;
   };
 
-  render() {
-    const currentUrl = this.getUrl();
-    return (
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <h2 className={styles.url}>{currentUrl}</h2>
-          <nav className={styles.navigator}>
-            <ul className={styles.list}>
-              {this.state.pages.map((page, index) => (
-                <li onClick={() => this.changeActive(index)} key={index} className={styles.item}>
-                  <Link to={page.path} className={this.state.active === index ? styles.active : ''}>
-                    {page.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
-      </div>
-    );
-  }
-}
+  const currentUrl = getUrl();
+  return (
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h2 className={styles.url}>{currentUrl}</h2>
+        <nav className={styles.navigator}>
+          <ul className={styles.list}>
+            {pages.map((page, index) => (
+              <li onClick={() => changeActive(index)} key={index} className={styles.item}>
+                <Link to={page.path} className={active === index ? styles.active : ''}>
+                  {page.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+    </div>
+  );
+};
+
+export default Header;
