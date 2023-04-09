@@ -1,0 +1,46 @@
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 100vh;
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: hidden;
+
+  button {
+    cursor: pointer;
+  }
+}
+
+.modal {
+  min-height: 200px;
+  max-width: 50%;
+  background-color: white;
+  color: black;
+
+}
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  text-align: center;
+}
+
+.content * {
+  margin: 5px;
+}
+
+
+.image {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  margin: 0 auto;
+}

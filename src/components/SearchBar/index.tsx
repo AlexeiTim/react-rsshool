@@ -2,28 +2,41 @@ import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import styles from './SearchBar.module.scss';
 
-const SearchBar = () => {
-  const [inputValue, setInputValue] = React.useState('');
+type SearchBar = {
+  setSearchValue: (text: string) => void;
+  searchValue: string;
+  setSearchParams: (text: string) => void;
+};
 
-  React.useEffect(() => {
-    const currentValue = localStorage.getItem('input') || '';
-    setInputValue(currentValue);
-  }, []);
+const SearchBar: React.FC<SearchBar> = ({ setSearchValue, searchValue, setSearchParams }) => {
+  const inputValue = React.useRef<HTMLInputElement>(null);
 
-  const changeValue = (e: React.FormEvent<HTMLInputElement>) => {
-    localStorage.setItem('input', inputValue);
-    setInputValue(e.currentTarget.value);
+  const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value;
+    setSearchValue(text);
+  };
+
+  const onChangeParams = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Enter') {
+      if (inputValue.current) {
+        setSearchParams(inputValue.current.value);
+      }
+    }
   };
   return (
     <section className={styles.search}>
-      <input
-        placeholder="search"
-        onChange={changeValue}
-        value={inputValue}
-        type="text"
-        className={styles.input}
-      />
-      <AiOutlineSearch className={styles.icon} />
+      <div className={styles.container}>
+        <input
+          ref={inputValue}
+          onKeyDown={onChangeParams}
+          placeholder="search"
+          onChange={onChangeValue}
+          value={searchValue}
+          type="text"
+          className={styles.input}
+        />
+        <AiOutlineSearch className={styles.icon} />
+      </div>
     </section>
   );
 };

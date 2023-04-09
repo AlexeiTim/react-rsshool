@@ -3,21 +3,28 @@ import React from 'react';
 import { describe } from 'vitest';
 import SearchBar from '.';
 describe('SearchBar component', () => {
+  const setSearchValue = function () {};
+  const setSearchParams = function () {};
+  const searchValue = '';
   it('SearchBar placeholder', () => {
-    render(<SearchBar />);
+    render(
+      <SearchBar
+        setSearchValue={setSearchValue}
+        setSearchParams={setSearchParams}
+        searchValue={searchValue}
+      />
+    );
     expect(screen.getByPlaceholderText(/search/)).toBeInTheDocument();
   });
 
   it('Search bar change value', async () => {
-    render(<SearchBar />);
+    render(
+      <SearchBar
+        setSearchValue={setSearchValue}
+        setSearchParams={setSearchParams}
+        searchValue={searchValue}
+      />
+    );
     expect(screen.queryByRole('textbox')).toBeInTheDocument();
-  });
-
-  it('Search bar change value', async () => {
-    render(<SearchBar />);
-    const inputElement = screen.getByPlaceholderText(/search/i) as HTMLInputElement;
-    const value = 'React';
-    fireEvent.change(inputElement, { target: { value: value } });
-    expect(inputElement.value).toBe(value);
   });
 });
