@@ -1,0 +1,52 @@
+.root {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  input {
+    width: 400px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background-color: #123;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .validate {
+    border: 1px solid #123;
+  }
+
+  .errorValidate {
+    border: 1px solid red;
+    outline: none;
+    animation: flashError 2s ease infinite;
+
+    &:focus {
+      border: 1px solid red;
+    }
+
+    &:active {
+      border: 1px solid red;
+
+    }
+  }
+
+  .error {
+    color: red;
+  }
+}
+
+@keyframes flashError {
+  0% {
+    border: 1px solid red;
+  }
+
+  50% {
+    border: 1px solid rgb(251, 251, 251);
+  }
+
+  100% {
+    border: 1px solid red;
+  }
+}

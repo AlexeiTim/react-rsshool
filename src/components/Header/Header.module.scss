@@ -1,0 +1,34 @@
+.container {
+  background-color: #123;
+}
+
+.header {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 5px;
+  .list {
+    display: flex;
+    gap: 20px;
+  }
+  .url {
+    text-align: center;
+    padding: 5px;
+  }
+  .item {
+    > a {
+      transition: all 0.3s;
+
+      &:hover {
+        color: rgb(25, 124, 224);
+      }
+
+      &:active {
+        color: rgb(83, 169, 255);
+      }
+
+      &.active {
+        border-bottom: 1px solid green;
+      }
+    }
+  }
+}
