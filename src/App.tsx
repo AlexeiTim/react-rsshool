@@ -5,7 +5,7 @@ import Main from './pages/Main/Main';
 import NotFound from './pages/NotFound/NotFound';
 import Header from './components/Header';
 import FormPage from './pages/Form/FormPage';
-
+alert('Не было времени заняться задание из-за рождения ребенка, в понедельник постараюсь выполнить')
 export class App extends React.Component {
   render() {
     return (
